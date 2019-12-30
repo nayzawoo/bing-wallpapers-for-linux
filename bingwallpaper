@@ -29,7 +29,7 @@ size="1920x1200"
 path="$HOME/Pictures/Bing/"
 
 # Make it run just once (useful to run as a cron)
-run_once=false
+run_once=true
 while getopts "1" opt; do
   case $opt in
     1 )
@@ -80,7 +80,8 @@ do
   echo "Bing Image of the day: $reqImgURL"
 
   # Getting Image Name.
-  imgName=${reqImgURL##*/}
+  # imgName=${reqImgURL##*/}
+  imgName=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1).jpg
 
   # Create Path Dir.
   mkdir -p $path
